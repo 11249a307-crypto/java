@@ -1,0 +1,29 @@
+import java.util.Scanner;
+
+public class ATM {
+   static double balance = 5000.0D;
+
+   static void withdraw(double var0) throws InsufficientBalanceException {
+      if (var0 > balance) {
+         throw new InsufficientBalanceException("Insufficient balance! Available balance: \u00e2\u201a\u00b9" + balance);
+      } else {
+         balance -= var0;
+         System.out.println("Withdrawal successful.");
+         System.out.println("Remaining balance: \u00e2\u201a\u00b9" + balance);
+      }
+   }
+
+   public static void main(String[] var0) {
+      Scanner var1 = new Scanner(System.in);
+      System.out.print("Enter amount to withdraw: \u00e2\u201a\u00b9");
+      double var2 = var1.nextDouble();
+
+      try {
+         withdraw(var2);
+      } catch (InsufficientBalanceException var5) {
+         System.out.println("Error: " + var5.getMessage());
+      }
+
+      var1.close();
+   }
+}
